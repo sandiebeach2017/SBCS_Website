@@ -7,14 +7,19 @@ type BusinessEmailInput = {
 };
 
 function getSmtpConfig() {
-  const host = process.env.SMTP_HOST;
+  const host = process.env.SMTP_HOST?.trim();
   const port = Number(process.env.SMTP_PORT ?? "587");
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const fromEmail = process.env.SMTP_FROM_EMAIL ?? user;
-  const fromName = process.env.SMTP_FROM_NAME ?? "SBCre8ive Website";
+  const user = process.env.SMTP_USER?.trim();
+  const pass = process.env.SMTP_PASS?.trim();
+  const fromEmailRaw = process.env.SMTP_FROM_EMAIL?.trim();
+  // Many SMTP providers (including Zoho) only allow a sender that matches the authenticated mailbox.
+  const fromEmail =
+    fromEmailRaw && user && fromEmailRaw.toLowerCase() === user.toLowerCase()
+      ? fromEmailRaw
+      : user;
+  const fromName = process.env.SMTP_FROM_NAME?.trim() ?? "SBCre8ive Website";
   const recipientEmail =
-    process.env.FORM_RECIPIENT_EMAIL ??
+    process.env.FORM_RECIPIENT_EMAIL?.trim() ??
     "contactus@sbcre8ivesolutions.com";
 
   if (!host || !user || !pass || !fromEmail || !recipientEmail) {
