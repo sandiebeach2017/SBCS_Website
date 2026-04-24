@@ -1,2 +1,10 @@
-# SBCS_Website
-This is a website that displays my profile and providing packages for personal branding with website, LinkedIn etc.. Ready to Launch sites in no time.
+# SBCS Website
+
+SBCre8ive Solutions marketing site built with Next.js.
+
+Includes:
+
+- Service and package pages
+- Dynamic quote and contact forms
+- Brand-matched logo/theme styling
+- API routes for form email delivery via SMTP
