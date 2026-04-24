@@ -62,9 +62,13 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch {
+  } catch (error) {
+    console.error("Quote form send failed:", error);
     return NextResponse.json(
-      { error: "Internal server error." },
+      {
+        error:
+          "We could not send your quote request email right now. Please try again in a few minutes.",
+      },
       { status: 500 }
     );
   }

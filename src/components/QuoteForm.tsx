@@ -5,6 +5,7 @@ import { PACKAGES } from "@/lib/packages";
 import { UNIVERSAL_FIELDS, FEATURE_QUESTIONS, PACKAGE_FEATURES, FormSection, FormField } from "@/lib/quoteForm";
 import { cn } from "@/lib/utils";
 import { CheckCircle, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
+import ErrorModal from "@/components/ErrorModal";
 
 type AnswerMap = Record<string, string | string[]>;
 
@@ -159,7 +160,16 @@ export default function QuoteForm() {
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errorModal, setErrorModal] = useState<{
+    open: boolean;
+    title: string;
+    message?: string;
+    items?: string[];
+  }>({ open: false, title: "" });
+
+  const showErrorModal = (title: string, message?: string, items?: string[]) => {
+    setErrorModal({ open: true, title, message, items });
+  };
 
   useEffect(() => {
     if (pkgParam) setSelectedPackage(pkgParam);
@@ -175,16 +185,26 @@ export default function QuoteForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
 
     // Validate required universal fields
     const required = UNIVERSAL_FIELDS.fields.filter((f) => f.required);
-    for (const f of required) {
-      if (!answers[f.id]) {
-        setError(`Please fill in: ${f.label}`);
-        setLoading(false);
-        return;
-      }
+    const missingFields = required
+      .filter((f) => {
+        const value = answers[f.id];
+        if (Array.isArray(value)) return value.length === 0;
+        if (typeof value === "string") return value.trim() === "";
+        return !value;
+      })
+      .map((f) => f.label);
+
+    if (missingFields.length > 0) {
+      showErrorModal(
+        "Please complete required fields",
+        "We need these details before sending your quote request.",
+        missingFields
+      );
+      setLoading(false);
+      return;
     }
 
     // Build payload
@@ -201,10 +221,18 @@ export default function QuoteForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Server error");
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error(data?.error ?? "Unable to submit quote right now.");
+      }
       setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again or email us directly.");
+    } catch (err) {
+      showErrorModal(
+        "Quote request not sent",
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or email us directly."
+      );
     } finally {
       setLoading(false);
     }
@@ -320,12 +348,6 @@ export default function QuoteForm() {
             </div>
           )}
 
-          {error && (
-            <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
-              {error}
-            </div>
-          )}
-
           <button
             type="submit"
             disabled={loading}
@@ -342,6 +364,14 @@ export default function QuoteForm() {
           </p>
         </>
       )}
+
+      <ErrorModal
+        open={errorModal.open}
+        title={errorModal.title}
+        message={errorModal.message}
+        items={errorModal.items}
+        onClose={() => setErrorModal({ open: false, title: "" })}
+      />
     </form>
   );
 }

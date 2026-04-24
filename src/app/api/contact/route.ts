@@ -30,7 +30,14 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch {
-    return NextResponse.json({ error: "Internal server error." }, { status: 500 });
+  } catch (error) {
+    console.error("Contact form send failed:", error);
+    return NextResponse.json(
+      {
+        error:
+          "We could not send your message email right now. Please try again in a few minutes.",
+      },
+      { status: 500 }
+    );
   }
 }
