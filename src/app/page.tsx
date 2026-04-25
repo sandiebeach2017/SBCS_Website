@@ -10,7 +10,7 @@ const services = [
   {
     icon: Users,
     title: "LinkedIn Profile Optimization",
-    desc: "Stand out to recruiters and decision-makers with a profile that tells your story.",
+    desc: "Position individual and business LinkedIn profiles to attract the right opportunities, clients, and partnerships.",
   },
   {
     icon: Search,
@@ -33,25 +33,14 @@ const whyUs = [
   "Digital contract + secure 50% upfront payment",
 ];
 
-const testimonials = [
-  {
-    name: "Marcus T.",
-    role: "Small Business Owner",
-    quote:
-      "SBCre8ive made the whole process so easy. I had my website live in two weeks and it looks incredible.",
-  },
-  {
-    name: "Priya S.",
-    role: "Freelance Consultant",
-    quote: "My LinkedIn views tripled within a month. Worth every penny.",
-  },
-  {
-    name: "Jordan L.",
-    role: "Startup Founder",
-    quote:
-      "The quote form was so thorough — they knew exactly what I needed before we even spoke.",
-  },
-];
+type Testimonial = {
+  name: string;
+  role: string;
+  quote: string;
+};
+
+// Keep empty until you have approved, real testimonials to publish.
+const testimonials: Testimonial[] = [];
 
 export default function HomePage() {
   return (
@@ -113,10 +102,10 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 px-4 sm:px-6 bg-slate-50">
+      <section className="brand-hero text-white py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-extrabold text-slate-900 mb-3">How It Works</h2>
-          <p className="text-slate-500 text-lg mb-12">Simple steps. Clear expectations. Zero confusion.</p>
+          <h2 className="text-3xl font-extrabold text-white mb-3">How It Works</h2>
+          <p className="brand-muted-text text-lg mb-12">Simple steps. Clear expectations. Zero confusion.</p>
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
             {[
               { step: "1", title: "Pick a Package", desc: "Choose the bundle that fits your needs — or build your own." },
@@ -124,12 +113,12 @@ export default function HomePage() {
               { step: "3", title: "Review &amp; Sign", desc: "We send you a contract. Review it, sign digitally, and pay 50% to get started." },
               { step: "4", title: "We Build &amp; Deliver", desc: "Sit back while we handle everything. You review, we refine." },
             ].map(({ step, title, desc }) => (
-              <div key={step} className="flex flex-col items-center text-center">
+              <div key={step} className="flex flex-col items-center text-center rounded-xl bg-white/10 px-3 py-4">
                 <div className="w-12 h-12 rounded-full brand-primary-button flex items-center justify-center text-lg font-extrabold mb-4 shadow">
                   {step}
                 </div>
-                <h3 className="font-bold text-slate-900 mb-1" dangerouslySetInnerHTML={{ __html: title }} />
-                <p className="text-sm text-slate-500 leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
+                <h3 className="font-bold text-white mb-1" dangerouslySetInnerHTML={{ __html: title }} />
+                <p className="text-sm brand-muted-text leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
               </div>
             ))}
           </div>
@@ -148,7 +137,7 @@ export default function HomePage() {
       <section className="py-20 px-4 sm:px-6 bg-white">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Why Clients Choose SBCre8ive</h2>
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Why Clients Choose SBCre8ive Solutions</h2>
             <p className="text-slate-500 text-base mb-8 leading-relaxed">
               We make the complex simple. From your first message to your launch day, we&apos;re with you every step of the way — in plain English.
             </p>
@@ -177,32 +166,34 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-4 sm:px-6 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3">What Our Clients Say</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {testimonials.map(({ name, role, quote }) => (
-              <div key={name} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} className="fill-[var(--brand-gold)] text-[var(--brand-gold)]" />
-                  ))}
+      {testimonials.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 bg-slate-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-extrabold text-slate-900 mb-3">What Our Clients Say</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {testimonials.map(({ name, role, quote }) => (
+                <div key={name} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={14} className="fill-[var(--brand-gold)] text-[var(--brand-gold)]" />
+                    ))}
+                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-4">&ldquo;{quote}&rdquo;</p>
+                  <div>
+                    <p className="font-bold text-slate-900 text-sm">{name}</p>
+                    <p className="text-xs text-slate-500">{role}</p>
+                  </div>
                 </div>
-                <p className="text-slate-600 text-sm leading-relaxed mb-4">&ldquo;{quote}&rdquo;</p>
-                <div>
-                  <p className="font-bold text-slate-900 text-sm">{name}</p>
-                  <p className="text-xs text-slate-500">{role}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 brand-section text-white text-center">
+      <section className="py-20 px-4 sm:px-6 brand-cta-gradient text-white text-center">
         <h2 className="text-3xl font-extrabold mb-4">Let&apos;s Build Something Great Together</h2>
         <p className="brand-muted-text text-lg max-w-xl mx-auto mb-8">
           Pick a package or just send us a quick email — we&apos;ll take it from there.

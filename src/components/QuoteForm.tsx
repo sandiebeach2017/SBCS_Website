@@ -260,6 +260,9 @@ export default function QuoteForm() {
         <p className="text-sm text-slate-500 mb-4">
           Not sure? Pick the closest one — you can always adjust after we review your form.
         </p>
+        <p className="text-xs text-slate-500 mb-4">
+          Package prices are baseline estimates. If your project needs additional customization, we&apos;ll confirm the final quote with you before moving forward.
+        </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {PACKAGES.map((pkg) => (
             <button

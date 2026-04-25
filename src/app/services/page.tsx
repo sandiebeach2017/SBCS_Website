@@ -17,15 +17,15 @@ const services = [
   },
   {
     icon: Users,
-    title: "LinkedIn Profile Optimization",
+    title: "LinkedIn Profile & Company Page Optimization",
     tagline: "Your digital first impression",
-    desc: "95% of decision-makers use LinkedIn to vet people before they ever reach out. We make sure your profile shows up, stands out, and tells the right story — whether you're an individual or a business.",
+    desc: "Decision-makers use LinkedIn to evaluate people and businesses before they reach out. We optimize candidate profiles, executive profiles, and company pages so your positioning is clear, credible, and aligned to your goals.",
     includes: [
-      "Keyword-optimized headline & summary",
-      "Experience rewrite for impact",
-      "Featured section strategy",
-      "Company page setup & branding",
-      "Profile photo & banner guidance",
+      "Individual candidate and executive profile optimization",
+      "LinkedIn company page positioning and setup",
+      "Headline, summary, and experience rewrite",
+      "Featured section and content direction strategy",
+      "Profile photo, banner, and brand alignment guidance",
     ],
   },
   {

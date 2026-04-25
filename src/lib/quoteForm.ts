@@ -86,7 +86,7 @@ export const FEATURE_QUESTIONS: Record<string, FormSection> = {
     fields: [
       { id: "li_ind_url", label: "Your current LinkedIn profile URL", type: "url", placeholder: "https://linkedin.com/in/yourname" },
       { id: "li_ind_goal", label: "What's the main goal of your LinkedIn profile?", type: "radio", required: true,
-        options: ["Find new clients", "Get job offers", "Build thought leadership", "Network in my industry", "All of the above"] },
+        options: ["Find new clients", "Support a career pivot or job search", "Build executive thought leadership", "Increase strategic networking", "All of the above"] },
       { id: "li_ind_count", label: "How many profiles need optimization?", type: "select",
         options: ["1", "2", "3", "4", "5"] },
       { id: "li_ind_headline", label: "What do you do / what's your current title?", type: "text", placeholder: "e.g. Real Estate Agent | Helping First-Time Buyers in Atlanta" },
@@ -101,7 +101,7 @@ export const FEATURE_QUESTIONS: Record<string, FormSection> = {
     fields: [
       { id: "li_biz_url", label: "Current company page URL (if it exists)", type: "url", placeholder: "https://linkedin.com/company/yourcompany" },
       { id: "li_biz_goal", label: "What do you want your company page to do?", type: "radio", required: true,
-        options: ["Attract B2B clients", "Recruit talent", "Build brand awareness", "All of the above"] },
+        options: ["Attract B2B clients", "Strengthen market positioning", "Recruit talent", "Build brand awareness", "All of the above"] },
       { id: "li_biz_description", label: "Briefly describe your company and what makes it unique", type: "textarea", placeholder: "We help small businesses with...", required: true },
       { id: "li_biz_assets", label: "Do you have a logo and brand colors?", type: "radio",
         options: ["Yes", "No — I need a logo too", "Partially"] },

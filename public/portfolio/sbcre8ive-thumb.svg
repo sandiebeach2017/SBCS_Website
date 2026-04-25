@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img"
+    aria-labelledby="title desc">
+    <title id="title">SB Cre8ive Solutions business branding website thumbnail</title>
+    <desc id="desc">A stylized thumbnail with branding colors and text for the SB Cre8ive Solutions
+        website project.</desc>
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0c68c9" />
+            <stop offset="100%" stop-color="#08285f" />
+        </linearGradient>
+    </defs>
+    <rect width="1200" height="750" fill="url(#bg)" />
+    <rect x="70" y="80" width="1060" height="590" rx="30" fill="#ffffff" fill-opacity="0.08" />
+    <text x="115" y="215" fill="#ffb81f" font-family="Arial, Helvetica, sans-serif" font-size="30"
+        font-weight="700" letter-spacing="3">BUSINESS BRANDING</text>
+    <text x="115" y="300" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="58"
+        font-weight="800">SB Cre8ive Solutions</text>
+    <text x="115" y="370" fill="#dbeafe" font-family="Arial, Helvetica, sans-serif" font-size="31">Service
+        Clarity • Quote Flow • Conversion Focused</text>
+    <rect x="115" y="445" width="300" height="64" rx="12" fill="#3cc8ef" />
+    <text x="156" y="486" fill="#08285f" font-family="Arial, Helvetica, sans-serif" font-size="27"
+        font-weight="800">Live Project</text>
+    <rect x="435" y="445" width="390" height="64" rx="12" fill="#ffffff" fill-opacity="0.16" />
+    <text x="470" y="486" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="27"
+        font-weight="700">Contact + Quote Forms Enabled</text>
+</svg>

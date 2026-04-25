@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="brand-section text-slate-200 py-10 mt-auto">
+    <footer className="brand-footer-solid text-slate-200 py-10 mt-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div>
           <div className="flex items-center gap-3">
@@ -28,6 +28,7 @@ export default function Footer() {
           <p className="text-white font-semibold mb-2">Quick Links</p>
           <ul className="space-y-1 text-sm">
             <li><Link href="/services" className="hover:text-[var(--brand-cyan)] transition-colors">Services</Link></li>
+            <li><Link href="/portfolio" className="hover:text-[var(--brand-cyan)] transition-colors">Portfolio</Link></li>
             <li><Link href="/packages" className="hover:text-[var(--brand-cyan)] transition-colors">Packages & Pricing</Link></li>
             <li><Link href="/quote" className="hover:text-[var(--brand-cyan)] transition-colors">Get a Quote</Link></li>
             <li><Link href="/contact" className="hover:text-[var(--brand-cyan)] transition-colors">Contact</Link></li>

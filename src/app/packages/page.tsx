@@ -22,11 +22,17 @@ export default function PackagesPage() {
         <p className="brand-muted-text text-lg max-w-2xl mx-auto">
           Flat-rate bundles with no hidden fees. Pick what fits your goals — or mix and match with à la carte add-ons.
         </p>
+        <p className="text-sm brand-muted-text/90 max-w-3xl mx-auto mt-4">
+          Prices shown are starting rates. If you need extra customization, we&apos;ll review options with you first and confirm everything before work begins.
+        </p>
       </section>
 
       {/* Package Cards */}
       <section className="py-16 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
+          <p className="text-sm text-slate-500 mb-6 text-center">
+            Baseline package pricing is listed below and may increase with added features or expanded scope.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PACKAGES.map((pkg) => (
               <div
