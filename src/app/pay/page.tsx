@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { CheckCircle, ArrowRight, Lock } from "lucide-react";
 import { PACKAGES } from "@/lib/packages";
 import { cn } from "@/lib/utils";
@@ -18,15 +18,14 @@ const PAYABLE_PACKAGES = PACKAGES.filter((p) => p.id !== "enterprise");
 
 export default function PayPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [selectedId, setSelectedId] = useState<string>("");
 
   useEffect(() => {
-    const pkg = searchParams.get("package");
+    const pkg = new URLSearchParams(window.location.search).get("package");
     if (pkg && DEPOSIT_DISPLAY[pkg]) {
       setSelectedId(pkg);
     }
-  }, [searchParams]);
+  }, []);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);

@@ -5,9 +5,20 @@ import { sendBusinessEmail } from "@/lib/email";
 // Required: disable Next.js body parsing so Stripe can verify the raw body.
 export const dynamic = "force-dynamic";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+function getStripeClient() {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+  if (!apiKey) {
+    return null;
+  }
+  return new Stripe(apiKey);
+}
 
 export async function POST(req: NextRequest) {
+  const stripe = getStripeClient();
+  if (!stripe) {
+    return NextResponse.json({ error: "Stripe is not configured yet." }, { status: 500 });
+  }
+
   const rawBody = await req.text();
   const sig = req.headers.get("stripe-signature");
 

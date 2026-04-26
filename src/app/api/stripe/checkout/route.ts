@@ -2,10 +2,24 @@ import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { getPriceEntry } from "@/lib/stripe-prices";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+function getStripeClient() {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+  if (!apiKey) {
+    return null;
+  }
+  return new Stripe(apiKey);
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const stripe = getStripeClient();
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "Stripe is not configured yet." },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
     const { packageId, customerEmail, customerName } = body as {
       packageId: string;
